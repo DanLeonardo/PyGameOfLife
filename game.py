@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 import pygame as pg
 from pygame.locals import *
 from conway import GameOfLife
@@ -91,10 +92,8 @@ class Game:
                 self.last_step += self.step_rate * 1000
                 changed = self.conway.step()
 
-                print(changed)
                 if not changed:
                     self.playing = False
-                    print('Stopping game')
 
     def _draw(self):
         self.screen.fill((0, 0, 0))
