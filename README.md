@@ -1,4 +1,5 @@
 # PyGameOfLife
+![PyGameOfLife](./images/PyGameOfLife.png)
 1. [Summary](#summary)
 2. [Controls](#controls)  
 3. [Arguments](#arguments)
