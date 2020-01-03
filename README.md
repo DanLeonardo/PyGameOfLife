@@ -7,7 +7,7 @@
     * [Update Rate](#update-rate)
 
 ## Summary
-PyGameOfLife is Conway's Game of Life built in Python3 using [PyGame](https://wwwpygame.org). Enjoy everybodies favorite cellular automaton from the comfort of your own monitor. Easily create new starting states and experiment with different patterns.  
+PyGameOfLife is Conway's Game of Life built in Python3 using [PyGame](https://www.pygame.org). Enjoy everybodies favorite cellular automaton from the comfort of your own monitor. Easily create new starting states and experiment with different patterns.  
   
 With special command line arguments (to be added) you can easily customize the size of the grid, size of each cell, and updates per second to match whatever it is you have in mind.  
   
