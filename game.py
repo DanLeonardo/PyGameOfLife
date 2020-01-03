@@ -126,9 +126,6 @@ class Game:
             self._draw()
             self.clock.tick(self.fps)
 
-            fps = self.clock.get_fps()
-            pg.display.set_caption('Conway\s Game of Life: %d' % fps)
-
 if __name__ == '__main__':
     game = Game()
     game.run()
