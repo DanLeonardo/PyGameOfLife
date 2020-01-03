@@ -1,12 +1,13 @@
 #!/usr/bin/python3
 import pygame as pg
 from pygame.locals import *
+import argparse
 from conway import GameOfLife
 
 class Game:
     def __init__(self):
-        self.width = 320
-        self.height = 240
+        self.width = 640
+        self.height = 640
         self.fps = 60
 
         self.running = False
@@ -21,10 +22,11 @@ class Game:
         self.last_tile = None
         self.last_tile_mode = True
 
-        self.width = self.tile_width * self.tile_size
-        self.height = self.tile_height * self.tile_size
+        # self.width = self.tile_width * self.tile_size
+        # self.height = self.tile_height * self.tile_size
 
     def _setup(self):
+        self.handle_arguments()
         self.screen = pg.display.set_mode((self.width, self.height))
         pg.display.set_caption('Conway\'s Game of Life')
         self.clock = pg.time.Clock()
@@ -93,6 +95,7 @@ class Game:
                 changed = self.conway.step()
 
                 if not changed:
+                    print('No Activity Found. Stopping.')
                     self.playing = False
 
     def _draw(self):
@@ -115,6 +118,31 @@ class Game:
     def _start_playing(self):
         self.playing = True
         self.last_step = pg.time.get_ticks()
+
+    def handle_arguments(self):
+        argParser = argparse.ArgumentParser();
+        argParser.add_argument('-grid',     '--grid-size',      type=int,   help='Size of the grid')
+        argParser.add_argument('-grid-h',   '--grid-height',    type=int,   help='Height of the grid')
+        argParser.add_argument('-grid-w',   '--grid-width',     type=int,   help='Width of the grid')
+
+        argParser.add_argument('-cell',     '--cell-size',      type=int,   help='Size of each cell')
+        argParser.add_argument('-update',   '--update-rate',    type=float,    help='Number of times per second to update')
+
+        args = vars(argParser.parse_args())
+        if args['grid_size']:
+            self.tile_width = self.tile_height = args['grid_size']
+        if args['grid_height']:
+            self.tile_height = args['grid_height']
+        if args['grid_width']:
+            self.tile_width = args['grid_width']
+
+        if args['cell_size']:
+            self.tile_size = args['cell_size']
+        if args['update_rate']:
+            self.step_rate = args['update_rate']
+
+        self.width = self.tile_width * self.tile_size
+        self.height = self.tile_height * self.tile_size
 
     def run(self):
         self._setup()
